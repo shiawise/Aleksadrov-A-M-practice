@@ -1,1 +1,36 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
 
+using namespace std;
+
+void printAngleInDegrees(double radians) {
+    const double PI = 3.14159265358979323846; 
+    const double RAD_TO_DEG = 180.0 / PI;     
+    double degrees = radians * RAD_TO_DEG;
+    int deg = static_cast<int>(degrees);
+    double minutes = (degrees - deg) * 60;
+
+    cout << deg << "° " << fixed << setprecision(0) << minutes << "'" << endl;
+}
+
+int main() {
+    double a, b;
+
+    cout << "Введите длины катетов a и b: ";
+    cin >> a >> b;
+
+    if (a <= 0 || b <= 0) {
+        cout << "Длины катетов должны быть положительными числами!" << endl;
+        return 1;
+    }
+
+    double angle1 = atan(a / b);
+    double angle2 = atan(b / a);
+
+    cout << "Острые углы треугольника: " << endl;
+    printAngleInDegrees(angle1); 
+    printAngleInDegrees(angle2);
+
+    return 0;
+}
